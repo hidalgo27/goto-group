@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import IconCarousel from "~/components/page/package/IconCarousel.vue";
+
 const { $gsap } = useNuxtApp()
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import {usePackageStore} from "~/stores/packages";
 import PopularPackages from "~/components/packages/PopularPackages.vue";
+import TimeLine from "~/components/page/package/TimeLine.vue";
 
 const packageStore = usePackageStore()
 
@@ -23,6 +26,7 @@ const getPackage = async () => {
 $gsap.registerPlugin(ScrollTrigger);
 let player: any
 onMounted(async () => {
+  await getPackage()
   onLoaded(({ Vimeo }) => {
     player = new Vimeo.Player(video.value, {
       id:1049078603,
@@ -40,7 +44,12 @@ onMounted(async () => {
     })
   })
 
-  await getPackage()
+  if (process.client) {
+    // @ts-ignore
+    import('https://static.elfsight.com/platform/platform.js').then((module) => {
+
+    });
+  }
 
   const parallaxImages = document.querySelectorAll(".parallax-image");
 
@@ -83,6 +92,8 @@ onMounted(async () => {
     </div>
   </section>
 
+  <IconCarousel></IconCarousel>
+
 
   <section class="container mb-6 mt-28">
     <div class="grid grid-cols-12 gap-6 items-center">
@@ -101,6 +112,16 @@ onMounted(async () => {
 
   <section class="container mt-6 text-right">
     <nuxt-link to="/peru-travel-packages" class="btn-primary-outline">View more</nuxt-link>
+  </section>
+
+  <div class="my-28 bg-primary/5 py-24">
+    <TimeLine></TimeLine>
+  </div>
+
+  <section class="container">
+    <div class="mt-6 text-white mb-6">
+      <div class="elfsight-app-5eb4043b-fced-4876-890c-bcac70bb6720" data-elfsight-app-lazy></div>
+    </div>
   </section>
 
 

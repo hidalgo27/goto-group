@@ -24,26 +24,27 @@ const items = ref([
 </script>
 
 <template>
-  <div class="container mx-auto px-4 space-y-12">
+  <div class="container space-y-12">
 
     <div class="text-center">
+      <div class="border-title mb-6 mt-4 mx-auto"></div>
       <h2
-        class="text-gray-900 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight text-5xl 2xl:text-7xl tracking-wide font-semibold font-playfair-display">
-        Why you Should <span class="text-orange-500">choose Us</span>
+        class="text-gray-900 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight text-5xl 2xl:text-5xl tracking-wide font-semibold font-playfair-display">
+        Why you Should <span class="">choose Us</span>
       </h2>
-      <p class="mt-4 text-gray-500 text-lg">
+      <p class="mt-4 tracking-widest font-light text-lg">
         There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
         form,
         injected.
       </p>
     </div>
 
-    <div class="container mx-auto px-4">
+    <div class="">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div class="w-full md:order-last">
-          <img src="/images/hotel.jpg" alt="Image" class="w-full h-auto shadow-lg object-cover" />
+          <img src="/images/hotel.jpg" alt="Image" class="w-full h-auto rounded-lg object-cover " />
         </div>
-        <div class="space-y-6">
+        <div class="space-y-12">
           <div v-for="(item, index) in items" :key="index" class="flex items-start space-x-4 relative">
             <div
               class="absolute left-8 transform -translate-x-1/2 -z-10 h-full border-l-2 border-dashed border-gray-300">
@@ -57,10 +58,10 @@ const items = ref([
             </div>
 
             <div class="flex-1">
-              <h3 class="text-lg font-semibold text-gray-800">
+              <h3 class="text-xl font-playfair-display font-semibold text-gray-800">
                 {{ item.title }}
               </h3>
-              <p class="text-sm text-gray-600">
+              <p class="mt-3 font-light">
                 {{ item.description }}
               </p>
             </div>
