@@ -5,7 +5,7 @@ import { Carousel, Slide } from "vue3-carousel"
 const breakpoints = {
   // 500px and up
   350: {
-    itemsToShow: 2.2,
+    itemsToShow: 2,
     snapAlign: 'start',
   },
   // 700px and up
