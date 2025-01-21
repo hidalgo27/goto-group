@@ -99,7 +99,7 @@ const handleSubmit = async () => {
       country: geoIp.value.country+" "+geoIp.value.country_calling_code,
       codigo_pais: geoIp.value.country+" "+geoIp.value.country_calling_code,
 
-      producto: "machupicchu.company",
+      producto: "goto.group",
       device: $device.isMobile ? 'Mobile' : $device.isTablet ? 'Tablet' : 'Desktop',
       browser: getBrowserName(),
       origen: "Web",

@@ -12,7 +12,7 @@ let player: any
 onMounted(async () => {
   onLoaded(({ Vimeo }) => {
     player = new Vimeo.Player(video.value, {
-      id: 1028540009,
+      id: 1049087903,
       autoplay: true,
       // background: true,
       // transparent: true,
@@ -31,7 +31,7 @@ onMounted(async () => {
 
 <template>
   <section>
-    <div class="relative w-full h-screen 2xl:h-[70vh] px-3">
+    <div class="relative w-full h-screen 2xl:h-[80vh] px-3">
       <div class="overflow-hidden h-full relative rounded-md">
         <div class="mask gradient-cicle-gray items-center flex justify-center">
           <div v-if="loading" class="mt-40 text-center">

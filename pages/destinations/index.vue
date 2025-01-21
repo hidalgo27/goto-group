@@ -24,6 +24,7 @@ const getPackage = async () => {
 $gsap.registerPlugin(ScrollTrigger);
 let player: any
 onMounted(async () => {
+  await getPackage()
   onLoaded(({ Vimeo }) => {
     player = new Vimeo.Player(video.value, {
       id: 1028177006,
@@ -41,7 +42,7 @@ onMounted(async () => {
     })
   })
 
-  await getPackage()
+
 
   const parallaxImages = document.querySelectorAll(".parallax-image");
 

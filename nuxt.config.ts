@@ -36,12 +36,33 @@ export default defineNuxtConfig({
   //   composables: true,
   //   provide: false,
   // },
+  render: {
+    csp: {
+      policies: {
+        'default-src': ["'self'"],
+        'script-src': [
+          "'self'",
+          "'unsafe-inline'", // Solo si es necesario
+          "https://player.vimeo.com",
+          "https://vimeo.com",
+        ],
+        'frame-src': ["'self'", "https://player.vimeo.com"],
+        'connect-src': ["'self'", "https://player.vimeo.com", "https://vimeo.com"],
+        'img-src': ["'self'", "data:", "https://i.vimeocdn.com"],
+        'style-src': ["'self'", "'unsafe-inline'"],
+      },
+    },
+  },
   scripts: {
     registry: {
       googleTagManager: {
         id: 'AW-382248808',
       }
-    }
+    },
+    vimeo: {
+      src: 'https://player.vimeo.com/api/player.js',
+      async: true,
+    },
   },
   googleFonts: {
     families: {
@@ -72,7 +93,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiSecret: '',
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || "https://api.machupicchu.company/api",
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || "https://api.goto.group/api",
       apiInquire: process.env.useNuxtApp || "https://api.gotoecuador.com/api/store/inquire",
       // apiBaseTest: process.env.API_BASE_TEST || "https://app.gotolatam.travel/api",
       apiBaseTest: '',

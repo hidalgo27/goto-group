@@ -25,7 +25,7 @@ let player: any
 onMounted(async () => {
   onLoaded(({ Vimeo }) => {
     player = new Vimeo.Player(video.value, {
-      id: 1028540009,
+      id:1049078603,
       autoplay: true,
       // background: true,
       // transparent: true,
@@ -64,7 +64,7 @@ onMounted(async () => {
 
 <template>
   <section>
-    <div class="relative w-full h-screen 2xl:h-[70vh] px-3">
+    <div class="relative w-full h-screen 2xl:h-[78vh] px-3">
       <div class="overflow-hidden h-full relative rounded-md">
       <div class="mask gradient-cicle-gray items-center flex justify-center">
         <div v-if="loading" class="mt-40 text-center">
@@ -72,11 +72,11 @@ onMounted(async () => {
         </div>
       </div>
       <div v-show="!loading" ref="video" loading="lazy" class="vimeo-wrapper"></div>
-      <div class="relative z-10 flex items-center  w-full h-full text-center">
-        <div class=" container ">
-          <h1 class="text-white/80 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight text-5xl 2xl:text-6xl tracking-wide font-semibold font-playfair-display">
+      <div class="relative z-10 flex items-end  w-full h-full text-center pb-24">
+        <div class=" container">
+          <h1 class="text-white/50 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight text-5xl 2xl:text-4xl tracking-wide font-semibold font-playfair-display">
             Start your unforgettable journey with us.</h1>
-          <p class="text-white text-xl 2xl:text-lg tracking-widest font-light mt-5 ">The best travel for your journey begins now</p>
+          <p class="text-white/50 text-xl 2xl:text-lg tracking-widest font-light mt-2 ">The best travel for your journey begins now</p>
         </div>
       </div>
       </div>
