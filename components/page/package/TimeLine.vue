@@ -45,12 +45,11 @@ const items = ref([
         </div>
         <div class="space-y-6">
           <div v-for="(item, index) in items" :key="index" class="flex items-start space-x-4 relative">
-            <!-- <div class="absolute left-[30px] transform -translate-x-1/2 
-                    top-8 sm:top-4 md:top-8
-                    h-28 md:h-32 lg:h-28
-                    border-l-2 border-dashed border-gray-300"></div> -->
+            <div
+              class="absolute left-8 transform -translate-x-1/2 -z-10 h-full border-l-2 border-dashed border-gray-300">
+            </div>
             <div class="relative w-16">
-              <div class="py-2 font-bold text-xs text-gray-600">
+              <div class=" font-bold text-xs text-gray-600">
                 <span class="rounded-full w-8 h-8 flex items-center justify-center text-white bg-gray-500">
                   {{ index + 1 }}
                 </span>
