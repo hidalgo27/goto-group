@@ -11,6 +11,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Fiorella from "~/components/page/video/Fiorella.vue";
 import Angie from "~/components/page/video/Angie.vue";
 import CarouselHotelDetail from "~/components/page/detail/CarouselHotelDetail.vue";
+import VideoBanner from "~/components/page/detail/VideoBanner.vue";
 
 definePageMeta({
   layout: 'custom'
@@ -363,7 +364,7 @@ onMounted(async () => {
   <div>
 
     <button
-        class="btn-primary wtrvl-checkout_button hidden z-10 "
+        class="btn-primary wtrvl-checkout_button !hidden "
         id="wetravel_button_widget"
         data-env="https://www.wetravel.com"
         data-version="v0.3"
@@ -375,16 +376,6 @@ onMounted(async () => {
     </button>
     <div v-for="packages in listPackages" class="mb-12">
 
-
-      <!--  <header class="h-[75vh] relative">-->
-      <!--    <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">-->
-      <!--    <div class="absolute inset-x-0 bottom-0 text-center hidden md:block">-->
-      <!--      <h1 class="mb-24 font-bold text-6xl text-white">-->
-      <!--        {{packages.titulo}}-->
-      <!--      </h1>-->
-      <!--    </div>-->
-      <!--  </header>-->
-
 <!--      <div class="relative">-->
 <!--        <div class="h-[75vh] relative overflow-hidden vimeo-wrapper">-->
 <!--          <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1" frameborder="0" allow="autoplay; fullscreen" class=""></iframe>-->
@@ -394,91 +385,53 @@ onMounted(async () => {
 <!--        </div>-->
 <!--      </div>-->
 
-<!--      <div class="h-[75vh] 2xl:h-[60vh] bg-gray-500">-->
-<!--        <carousel  ref="carouselRef" :wrap-around="true" :breakpoints="breakpoints">-->
-<!--          <template v-for="paquete_destino in packages.paquetes_destinos">-->
+      <VideoBanner :duration="packages.duracion" :title="packages.titulo"></VideoBanner>
 
+
+
+<!--      <header class="h-[100vh] 2xl:h-[100vh] relative bg-secondary overflow-hidden grid grid-cols-2 px-3">-->
+<!--        <div class="col-span-2 md:col-span-1">-->
+<!--&lt;!&ndash;          <nuxt-img src="https://gotoperu.com/images/hotels/banner.webp" :placeholder="[50, 25, 75, 5]" alt="" class="parallax-image h-[125vh] 2xl:h-[125vh] object-cover w-full object-bottom bottom-0 "></nuxt-img>&ndash;&gt;-->
+<!--&lt;!&ndash;          <nuxt-img src="https://s3.us-west-1.amazonaws.com/gotoperu-com/destinations/slider/1709050239382Slider%20copia%203%20machupicchu_1709050241.jpg" alt="" :placeholder="[50, 25, 75, 5]" class="object-cover w-full h-[75vh] 2xl:h-[100vh] object-bottom"></nuxt-img>&ndash;&gt;-->
+<!--          <carousel  ref="carouselRef" :wrap-around="true" :breakpoints="breakpoints">-->
+<!--            <template v-for="paquete_destino in packages.paquetes_destinos">-->
 <!--              <slide v-for="(destino_imagen, index) in paquete_destino.destinos.destino_imagen" :key="index">-->
-<!--                <nuxt-img :src="destino_imagen.nombre" alt="" :placeholder="[50, 25, 75, 5]" class="object-cover w-full h-[75vh] 2xl:h-[60vh] object-bottom"></nuxt-img>-->
+<!--                <nuxt-img :src="destino_imagen.nombre" alt="" :placeholder="[50, 25, 75, 5]" class="parallax-image h-[125vh] 2xl:h-[125vh] object-cover w-full object-bottom"></nuxt-img>-->
 <!--              </slide>-->
+<!--            </template>-->
+<!--          </carousel>-->
+<!--        </div>-->
+<!--        <div class="col-span-2 md:col-span-1  items-center text-white bg-primary px-24 h-full 2xl:mb-40 hidden md:grid">-->
+<!--          <div class="">-->
 
-<!--          </template>-->
-<!--        </carousel>-->
-
-<!--      </div>-->
-
-      <header class="h-[100vh] 2xl:h-[100vh] relative bg-secondary overflow-hidden grid grid-cols-2">
-        <div class="col-span-2 md:col-span-1">
-<!--          <nuxt-img src="https://gotoperu.com/images/hotels/banner.webp" :placeholder="[50, 25, 75, 5]" alt="" class="parallax-image h-[125vh] 2xl:h-[125vh] object-cover w-full object-bottom bottom-0 "></nuxt-img>-->
-<!--          <nuxt-img src="https://s3.us-west-1.amazonaws.com/gotoperu-com/destinations/slider/1709050239382Slider%20copia%203%20machupicchu_1709050241.jpg" alt="" :placeholder="[50, 25, 75, 5]" class="object-cover w-full h-[75vh] 2xl:h-[100vh] object-bottom"></nuxt-img>-->
-          <carousel  ref="carouselRef" :wrap-around="true" :breakpoints="breakpoints">
-            <template v-for="paquete_destino in packages.paquetes_destinos">
-              <slide v-for="(destino_imagen, index) in paquete_destino.destinos.destino_imagen" :key="index">
-                <nuxt-img :src="destino_imagen.nombre" alt="" :placeholder="[50, 25, 75, 5]" class="parallax-image h-[125vh] 2xl:h-[125vh] object-cover w-full object-bottom"></nuxt-img>
-              </slide>
-            </template>
-          </carousel>
-        </div>
-        <div class="col-span-2 md:col-span-1  items-center text-white bg-primary px-24 h-full 2xl:mb-40 hidden md:grid">
-          <div class="">
-
-            <div class="text-secondary mb-2 flex gap-2 items-center">
-              <div>
-                {{ packages.duracion }} days
-              </div>
-
-            </div>
-            <div class="border-title-sm mb-2"></div>
-            <div class="2xl:text-3xl text-xl font-semibold mb-2">
-              <h1>{{ packages.titulo }}</h1>
-            </div>
-
-            <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0">
-              <p class="text-xs font-light mb-1">Price p.p. from</p>
-              <span class="text-2xl text-quaternary font-semibold">${{ getThreeStarPrice(packages.precio_paquetes) }}</span>
-              <span class="text-sm text-quaternary"> usd</span>
-            </div>
-
-<!--            <h4>travel advisor of the month</h4>-->
-<!--            <div class="py-6 flex gap-6">-->
-<!--              <nuxt-img src="https://gotoperu-com.s3.us-west-1.amazonaws.com/team/maja.jpg" class=" h-20"></nuxt-img>-->
-<!--              <nuxt-img src="https://gotoperu-com.s3.us-west-1.amazonaws.com/team/karina.jpg" class=" h-20"></nuxt-img>-->
-<!--            </div>-->
-<!--              <div class="flex -space-x-1 overflow-hidden">-->
-<!--                <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white m-1" :src="team.imagen_perfil" :alt="team.nombre" v-for="(team, index) in limitedTeam" :key="index">-->
+<!--            <div class="text-secondary mb-2 flex gap-2 items-center">-->
+<!--              <div>-->
+<!--                {{ packages.duracion }} days-->
 <!--              </div>-->
 
-<!--            <p class=" tracking-widest font-light 2xl:w-1/2 mt-3">Get a travel expert to plan your dream vacation</p>-->
+<!--            </div>-->
+<!--            <div class="border-title-sm mb-2"></div>-->
+<!--            <div class="2xl:text-3xl text-xl font-semibold mb-2">-->
+<!--              <h1>{{ packages.titulo }}</h1>-->
+<!--            </div>-->
 
-            <div class="flex gap-6 my-6  text-secondary  items-center">
-              <a href="#overview"  class="text-sm py-2 px-3 bg-slate-100 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Overview</a>
-              <a href="#itinerary" class="text-sm py-2 px-3 bg-slate-100 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary" >Itinerary</a>
-              <a href="#included" class="text-sm py-2 px-3 bg-slate-100 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Included</a>
-              <!--      <a href="#hotels" class="text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
-              <!--      <a href="included" class="text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
-              <!--                <a href="#prices" class="text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Prices</a>-->
-              <nuxt-link to="#form-dream-adventure" class="btn-ternary">Plan your adventure</nuxt-link>
-            </div>
+<!--            <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0">-->
+<!--              <p class="text-xs font-light mb-1">Price p.p. from</p>-->
+<!--              <span class="text-2xl text-quaternary font-semibold">${{ getThreeStarPrice(packages.precio_paquetes) }}</span>-->
+<!--              <span class="text-sm text-quaternary"> usd</span>-->
+<!--            </div>-->
 
+<!--            <div class="flex gap-6 my-6  text-secondary  items-center">-->
+<!--              <a href="#overview"  class="text-sm py-2 px-3 bg-slate-100 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Overview</a>-->
+<!--              <a href="#itinerary" class="text-sm py-2 px-3 bg-slate-100 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary" >Itinerary</a>-->
+<!--              <a href="#included" class="text-sm py-2 px-3 bg-slate-100 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Included</a>-->
+<!--              <nuxt-link to="#form-dream-adventure" class="btn-ternary">Plan your adventure</nuxt-link>-->
+<!--            </div>-->
 
-          </div>
-        </div>
-        <!--    <div class="absolute  inset-0 w-full h-full">-->
-        <!--      <div class="container grid grid-cols-2  pb-12 h-full">-->
-        <!--        <div class="">-->
-        <!--          <div class="border-2 border-white w-8 mb-2"></div>-->
-        <!--          <h1 class="text-white text-opacity-70 leading-tight text-5xl 2xl:text-7xl tracking-wide font-semibold">-->
-        <!--            Peru-->
-        <!--            Destinations</h1>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <!--          <p class="text-white text-xl   tracking-widest font-light mt-5">Unveil the Wonders of a Journey Through History and Nature.</p>-->
-        <!--        </div>-->
-        <!--        <div class="">-->
-        <!--          sd-->
-        <!--        </div>-->
-        <!--      </div>-->
-        <!--    </div>-->
-      </header>
+<!--      </header>-->
 
 
 
@@ -614,12 +567,12 @@ onMounted(async () => {
 
 
 
-            <article class="mt-6" id="overview">
-              <h2 class="text-2xl font-bold mb-8">Recommended Hotels</h2>
+<!--            <article class="mt-6" id="overview">-->
+<!--              <h2 class="text-2xl font-bold mb-8">Recommended Hotels</h2>-->
 
-              <CarouselHotelDetail :listPackages="listPackages"></CarouselHotelDetail>
+<!--              <CarouselHotelDetail :listPackages="listPackages"></CarouselHotelDetail>-->
 
-            </article>
+<!--            </article>-->
 
 
           </div>
@@ -693,7 +646,7 @@ onMounted(async () => {
 
 
 
-            <div class="grid grid-cols-2 my-12 gap-4">
+            <div class="grid grid-cols-2 my-12 gap-4 hidden">
               <div class="flex items-center gap-3">
                 <div class="rounded-full bg-secondary p-3">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
@@ -839,13 +792,13 @@ onMounted(async () => {
           <Fiorella></Fiorella>
           <Angie></Angie>
         </div>
-        <div class="col-span-12 md:col-span-7 grid items-center text-white bg-primary p-12 md:p-24">
+        <div class="col-span-12 md:col-span-7 grid items-center text-white bg-gray-700 p-12 md:p-24">
           <div class="">
             <div class="border-title-sm mb-2"></div>
             <h2 class="text-3xl font-semibold mb-6">Travel with us</h2>
             <p class=" tracking-widest font-light md:w-1/2">Luxury travel programs have never been so enjoyable until now! Nowadays, travelers are looking for maximum comfort in their vacations, but they are also looking to explore the region in a local way and get to know the cultures of each country up close. So Machu Picchu Company has developed a series of customized tours that compose the perfect travel program for you and your family.</p>
             <div class="mt-12">
-              <nuxt-link to="#form-dream-adventure" class="btn-ternary">Get a Quote</nuxt-link>
+              <nuxt-link to="#form-dream-adventure" class="btn-secondary">Get a Quote</nuxt-link>
             </div>
           </div>
         </div>
@@ -854,31 +807,3 @@ onMounted(async () => {
 
   </div>
 </template>
-
-<style scoped>
-.timeline-container {
-  border-left: 2px solid #ddd;
-  margin-left: 20px;
-  padding-left: 20px;
-}
-
-.timeline-day {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.timeline-header {
-  background-color: #f8f8f8;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.timeline-content {
-  border-top: 1px solid #ddd;
-  margin-top: 10px;
-  padding-top: 10px;
-  overflow: hidden;
-  /* Las alturas se gestionan dinámicamente con GSAP y el estado de apertura */
-}
-</style>

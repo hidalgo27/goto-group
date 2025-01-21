@@ -2,15 +2,15 @@
   <footer class="relative bg-gray-800 text-gray-500 pb-16">
     <div class="container pt-12">
       <div class="mb-10 flex items-center justify-center">
-        <div>
-          <nuxt-img src="/images/logos/logo-mapi.svg" class="h-[14px] md:h-[25px] invert mx-auto"></nuxt-img>
+        <div class="bg-white/20 backdrop-blur p-6 rounded-lg">
+          <nuxt-img src="/images/logos/logo-gotogroup.svg" class="h-[14px] md:h-[25px] mx-auto"></nuxt-img>
         </div>
-        <div>
-          <span class="text-white px-4 text-xs md:text-lg">part of</span>
-        </div>
-        <div>
-          <nuxt-img src="/images/logos/logo-gotoperu.svg" class="h-[14px] md:h-[25px] mx-auto"></nuxt-img>
-        </div>
+<!--        <div>-->
+<!--          <span class="text-white px-4 text-xs md:text-lg">part of</span>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <nuxt-img src="/images/logos/logo-gotoperu.svg" class="h-[14px] md:h-[25px] mx-auto"></nuxt-img>-->
+<!--        </div>-->
       </div>
 
 
@@ -74,32 +74,32 @@
             Travel Info
           </p>
           <ul class="mt-2 space-y-2">
-            <li>
-              <nuxt-link to="/why-book-with-us" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Why book with us</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link to="/travel-with-confidence" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Travel with confidence</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link to="/booking-terms-and-conditions" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Booking terms</nuxt-link>
-            </li>
+<!--            <li>-->
+<!--              <nuxt-link to="/why-book-with-us" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Why book with us</nuxt-link>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <nuxt-link to="/travel-with-confidence" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Travel with confidence</nuxt-link>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <nuxt-link to="/booking-terms-and-conditions" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Booking terms</nuxt-link>-->
+<!--            </li>-->
             <li>
               <nuxt-link to="/about-us" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">About us</nuxt-link>
             </li>
-            <li>
-              <nuxt-link to="/frequently-asked-questions" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">FAQ</nuxt-link>
-            </li>
+<!--            <li>-->
+<!--              <nuxt-link to="/frequently-asked-questions" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">FAQ</nuxt-link>-->
+<!--            </li>-->
           </ul>
         </div>
         <div>
           <p class="font-semibold tracking-wide text-secondary block mb-6">
             Documents
           </p>
-          <ul>
-            <li>
-              <a href="/frequently-asked-questions" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Terms and conditions</a>
-            </li>
-          </ul>
+<!--          <ul>-->
+<!--            <li>-->
+<!--              <a href="/frequently-asked-questions" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Terms and conditions</a>-->
+<!--            </li>-->
+<!--          </ul>-->
           <p class="font-semibold tracking-wide text-secondary mb-6">
 
           </p>

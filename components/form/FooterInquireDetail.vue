@@ -257,19 +257,19 @@ onMounted(async () => {
             <section class="pb-8 text-center">
 <!--              <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="mx-auto w-64">-->
               <div class="border-title mb-6 mx-auto"></div>
-              <nuxt-img src="/images/logos/logo-mapi.svg" class="w-[250px] md:w-[320px] mx-auto"></nuxt-img>
+              <nuxt-img src="/images/logos/logo-gotogroup.svg" class="w-[250px] md:w-[320px] mx-auto"></nuxt-img>
               <h3 class="my-3 font-semibold text-gray-700 text-2xl mt-12">Free Quote</h3>
               <p class="text-gray-500">Select your travel preferences and we will send you a travel proposal.</p>
             </section>
             <div class="divider-dashed"></div>
 
             <div class="text-left mt-6">
-              <h2 class="text-lg text-secondary mb-5">Get a quote on this travel package:</h2>
+              <h2 class="text-lg  mb-5">Get a quote on this travel package:</h2>
 
-              <h2 class="text-xl text-primary mb-5 bg-white/30 text-center px-5 py-2 border border-gray-300 font-semibold rounded-sm">
+              <h2 class="text-xl  mb-5 bg-white/30 text-center px-5 py-2 border border-gray-300 font-semibold rounded-sm">
                 {{ formStore.titlePackages }}</h2>
 
-              <h3 class="text-lg text-primary my-5">Hotel Category</h3>
+              <h3 class="text-lg  my-5">Hotel Category</h3>
               <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll no-scrollbar focus:touch-pan-x">
                 <div class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-sm ">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -325,7 +325,7 @@ onMounted(async () => {
 
               </div>
               </div>
-              <h3 class="text-lg text-primary my-5">Number of travelers</h3>
+              <h3 class="text-lg  my-5">Number of travelers</h3>
               <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll no-scrollbar focus:touch-pan-x">
                 <div class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-sm">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -371,8 +371,8 @@ onMounted(async () => {
                         </svg>
                       </div>
 
-                      <div v-if="$v.fullName.$error" class="text-xs text-red-500">El nombre es requerido</div>
                     </div>
+                    <div v-if="$v.fullName.$error" class="text-xs text-red-500">El nombre es requerido</div>
                   </div>
 
                   <div class="grid grid-cols-2 gap-3">
@@ -400,47 +400,33 @@ onMounted(async () => {
 
 
                     <div class="relative">
-<!--                      <VMenu>-->
-<!--                        <input type="text" class="is-input-ico peer" placeholder=" " v-model="formStore.travelDate" @focus="showModalProcess = true">-->
-<!--                        <label class="is-input-ico-label" @click="showModalProcess = true">When</label>-->
-<!--                        <div class="absolute inset-y-0 left-0 flex items-center pl-2 md:pl-4 pointer-events-none">-->
-<!--                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
-<!--                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />-->
-<!--                          </svg>-->
-<!--                        </div>-->
-<!--                        <template #popper>-->
-<!--                          <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="formStore.travelDate" @click="onClickSomething()" class="calendar-w"/>-->
-<!--                        </template>-->
-<!--                      </VMenu>-->
-<!--                      <div class="bg-white/30 absolute rounded-md inset-0 -z-10"></div>-->
+                      <div class="relative">
+                        <client-only>
+                          <VDatePicker v-model="travelDate" mode="date" :min-date="today">
+                            <template #default="{ togglePopover }">
+                              <button
+                                  class="input-goto peer text-left"
+                                  @click="togglePopover"
+                              >
 
-<!--                      <vue-tailwind-datepicker as-single  :formatter="formatter" placeholder="Tentative travel date" :disable-date="disablePastDates" v-model="travelDate" input-classes="input-goto peer !pl-3"/>-->
-<!--                      <label class="absolute cursor-text text-gray-500 top-0 left-2 backdrop-blur-sm rounded-2xl px-1 transition-all duration-200 ease-in-out text-xs" @click="showModalProcess = true">When</label>-->
+                                <!--                        <span v-if="filters.created_start && filters.created_end">{{ filters.created_start+' to '+filters.created_end }}</span>-->
+                                <span v-if="travelDate">{{ moment(travelDate).format('YYYY-MM-DD') }}</span>
+                                <span class="text-gray-500" v-else>Tentative travel date</span>
+                                <span class="absolute cursor-text text-gray-500 -top-3 left-2 backdrop-blur-sm rounded-2xl px-1 transition-all duration-200 ease-in-out text-xs" >Inquire Date</span>
 
-                      <client-only>
-                        <VDatePicker v-model="travelDate" mode="date" :min-date="today">
-                          <template #default="{ togglePopover }">
-                            <button
-                                class="input-goto peer text-left"
-                                @click="togglePopover"
-                            >
+                              </button>
 
-                              <!--                        <span v-if="filters.created_start && filters.created_end">{{ filters.created_start+' to '+filters.created_end }}</span>-->
-                              <span v-if="travelDate">{{ moment(travelDate).format('YYYY-MM-DD') }}</span>
-                              <span class="text-gray-500" v-else>Tentative travel date</span>
-                              <span class="absolute cursor-text text-gray-500 -top-3 left-2 backdrop-blur-sm rounded-2xl px-1 transition-all duration-200 ease-in-out text-xs" >Inquire Date</span>
+                            </template>
+                          </VDatePicker>
+                        </client-only>
 
-                            </button>
 
-                          </template>
-                        </VDatePicker>
-                      </client-only>
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                          </svg>
 
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-                        </svg>
-
+                        </div>
                       </div>
 
                       <div v-if="$v.travelDate.$error" class="text-xs text-red-500">Travel date required</div>
@@ -467,10 +453,9 @@ onMounted(async () => {
                           <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z" />
                         </svg>
                       </div>
-
-                      <div v-if="$v.userEmail.$error" class="text-xs text-red-500">
-                        <span v-if="$v.userEmail.email.$message">{{ $v.userEmail.email.$message }}</span>
-                      </div>
+                    </div>
+                    <div v-if="$v.userEmail.$error" class="text-xs text-red-500">
+                      <span v-if="$v.userEmail.email.$message">{{ $v.userEmail.email.$message }}</span>
                     </div>
                   </div>
 

@@ -5,6 +5,7 @@ const { $gsap } = useNuxtApp()
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HotelDestino from "~/components/page/destino/HotelDestino.vue";
 import IconPackage from "~/components/page/package/IconPackage.vue";
+import VideoBannerDestino from "~/components/page/destino/VideoBannerDestino.vue";
 
 const packageStore = usePackageStore()
 
@@ -62,65 +63,67 @@ onMounted(async () => {
 </script>
 <template>
   <div>
-  <header class="h-[100vh] 2xl:h-[90vh] relative  overflow-hidden">
-    <div class="absolute inset-0 gradient-cicle-gray z-10 items-center flex justify-center">
-      <div v-if="loading" class="mt-40 text-center">
-        Cargando ..
-      </div>
-    </div>
+<!--  <header class="h-[100vh] 2xl:h-[90vh] relative  overflow-hidden">-->
+<!--    <div class="absolute inset-0 gradient-cicle-gray z-10 items-center flex justify-center">-->
+<!--      <div v-if="loading" class="mt-40 text-center">-->
+<!--        Cargando ..-->
+<!--      </div>-->
+<!--    </div>-->
 
-<!--    <video autoplay muted loop class="absolute inset-0 w-full  h-full object-cover">-->
-<!--      <source src="/videos/destination.mp4" type="video/mp4" />-->
-<!--      Tu navegador no soporta el video en HTML5.-->
-<!--    </video>-->
+<!--&lt;!&ndash;    <video autoplay muted loop class="absolute inset-0 w-full  h-full object-cover">&ndash;&gt;-->
+<!--&lt;!&ndash;      <source src="/videos/destination.mp4" type="video/mp4" />&ndash;&gt;-->
+<!--&lt;!&ndash;      Tu navegador no soporta el video en HTML5.&ndash;&gt;-->
+<!--&lt;!&ndash;    </video>&ndash;&gt;-->
 
-    <div v-show="!loading" ref="video" loading="lazy" class="vimeo-wrapper"></div>
-    <div class="absolute  inset-0 w-full h-full z-20">
-      <div class="container grid items-end pb-12 h-full">
-        <div class="">
-          <div class="border-2 border-white w-8 mb-2"></div>
-          <h1 class="text-white text-opacity-70 leading-tight text-5xl 2xl:text-7xl tracking-wide font-semibold">
-            Peru
-            Destinations</h1>
+<!--    <div v-show="!loading" ref="video" loading="lazy" class="vimeo-wrapper"></div>-->
+<!--    <div class="absolute  inset-0 w-full h-full z-20">-->
+<!--      <div class="container grid items-end pb-12 h-full">-->
+<!--        <div class="">-->
+<!--          <div class="border-2 border-white w-8 mb-2"></div>-->
+<!--          <h1 class="text-white text-opacity-70 leading-tight text-5xl 2xl:text-7xl tracking-wide font-semibold">-->
+<!--            Peru-->
+<!--            Destinations</h1>-->
 
-          <p class="text-white text-xl   tracking-widest font-light mt-5">Unveil the Wonders of a Journey Through History and Nature.</p>
-        </div>
-      </div>
-    </div>
-  </header>
+<!--          <p class="text-white text-xl   tracking-widest font-light mt-5">Unveil the Wonders of a Journey Through History and Nature.</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </header>-->
 
-    <section class="container mt-32 hidden md:block">
-      <div class="grid grid-cols-12 gap-6 items-center">
-        <div class="col-span-4 text-primary">
-          <div class="border-title mb-2"></div>
-          <h2 class="text-3xl font-semibold mb-6">Unveil the <br>Wonders of Peru</h2>
-          <p class="tracking-widest">Peru is a country with endless tourist destinations to explore. Do not miss the opportunity to travel to the most exclusive beaches of Peru, visit the citadel of Machu Picchu on luxury trains, and explore the Peruvian Amazon with the most luxurious cruises that only Machu Picchu Company can offer to all our exclusive travelers. Make sure you visit all the main tourist destinations in Peru with the comforts and luxuries that our organization provides you.</p>
-        </div>
-        <div class="col-span-8">
-          <nuxt-link to="/destinations/machu-picchu">
-            <div class="overflow-hidden relative parallax-container h-[920px] 2xl:h-[900px] group">
-              <div class="absolute inset-0 gradient-cicle-beige z-10"></div>
-              <nuxt-img src="https://s3.us-west-1.amazonaws.com/gotoperu-com/destinations/1708964114497portada%20gotoperu%20machupicchu_1708964115.jpg"  class="parallax-image h-[920px] 2xl:h-[1200px] object-cover object-center absolute top-0 left-0 w-full"></nuxt-img>
-              <div class="absolute bottom-0 inset-0 items-center grid text-center text-3xl z-10 group-hover:backdrop-blur-sm group-hover:bg-primary/40 text-white rounded px-6 py-3 transition duration-500 ease-in-out">
-                Machu Picchu
-                <div class="absolute text-sm bottom-0 w-full p-32 text-white transition-transform transform translate-y-full group-hover:translate-y-0 duration-500">
-                  Travel on the most luxurious trains to the citadel of Machu Picchu! Experience a tour of Inca City with Machu Picchu Company, which offers personalized services that all our travelers need.
-                </div>
-              </div>
-            </div>
-          </nuxt-link>
-        </div>
-      </div>
-    </section>
+    <VideoBannerDestino></VideoBannerDestino>
 
-    <div class="container grid grid-cols-1 md:grid-cols-4 gap-6 2xl:grid-cols-4 mt-6 mb-12">
+<!--    <section class="container mt-32 hidden md:block">-->
+<!--      <div class="grid grid-cols-12 gap-6 items-center">-->
+<!--        <div class="col-span-4 text-primary">-->
+<!--          <div class="border-title mb-2"></div>-->
+<!--          <h2 class="text-3xl font-semibold mb-6">Unveil the <br>Wonders of Peru</h2>-->
+<!--          <p class="tracking-widest">Peru is a country with endless tourist destinations to explore. Do not miss the opportunity to travel to the most exclusive beaches of Peru, visit the citadel of Machu Picchu on luxury trains, and explore the Peruvian Amazon with the most luxurious cruises that only Machu Picchu Company can offer to all our exclusive travelers. Make sure you visit all the main tourist destinations in Peru with the comforts and luxuries that our organization provides you.</p>-->
+<!--        </div>-->
+<!--        <div class="col-span-8">-->
+<!--          <nuxt-link to="/destinations/machu-picchu">-->
+<!--            <div class="overflow-hidden relative parallax-container h-[920px] 2xl:h-[900px] group">-->
+<!--              <div class="absolute inset-0 gradient-cicle-beige z-10"></div>-->
+<!--              <nuxt-img src="https://s3.us-west-1.amazonaws.com/gotoperu-com/destinations/1708964114497portada%20gotoperu%20machupicchu_1708964115.jpg"  class="parallax-image h-[920px] 2xl:h-[1200px] object-cover object-center absolute top-0 left-0 w-full"></nuxt-img>-->
+<!--              <div class="absolute bottom-0 inset-0 items-center grid text-center text-3xl z-10 group-hover:backdrop-blur-sm group-hover:bg-primary/40 text-white rounded px-6 py-3 transition duration-500 ease-in-out">-->
+<!--                Machu Picchu-->
+<!--                <div class="absolute text-sm bottom-0 w-full p-32 text-white transition-transform transform translate-y-full group-hover:translate-y-0 duration-500">-->
+<!--                  Travel on the most luxurious trains to the citadel of Machu Picchu! Experience a tour of Inca City with Machu Picchu Company, which offers personalized services that all our travelers need.-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </nuxt-link>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+    <div class="container grid grid-cols-1 md:grid-cols-4 gap-6 2xl:grid-cols-4 mt-6 my-12">
       <nuxt-link :to="'/destinations/'+destination.url" class="relative group" v-for="destination in listPackages">
-        <div class="overflow-hidden relative">
+        <div class="overflow-hidden relative rounded-lg">
           <div class="absolute inset-0 gradient-cicle-beige z-10"></div>
-          <nuxt-img :src="destination.imagen" class="object-cover h-[32rem]  w-full transition duration-500 ease-in-out transform group-hover:-translate-x-0 group-hover:scale-105"></nuxt-img>
+          <nuxt-img :src="destination.imagen" class="object-cover h-[32rem] w-full transition duration-500 ease-in-out transform group-hover:-translate-x-0 group-hover:scale-105"></nuxt-img>
         </div>
 
-        <div class="absolute bottom-0 inset-0 items-center overflow-hidden grid text-center text-2xl z-10 group-hover:backdrop-blur-sm group-hover:bg-gray-950/30 text-white rounded px-6 py-3 transition duration-500 ease-in-out">
+        <div class="absolute bottom-0 inset-0 items-center rounded-lg overflow-hidden grid text-center text-2xl z-10 group-hover:backdrop-blur-sm group-hover:bg-gray-950/30 text-white px-6 py-3 transition duration-500 ease-in-out">
 
 <!--          <p class="text-sm text-gray-500 dark:text-gray-200" v-html="destination.resumen"></p>-->
 
@@ -219,7 +222,7 @@ onMounted(async () => {
 <!--    </div>-->
 <!--  </section>-->
 
-    <IconPackage></IconPackage>
+<!--    <IconPackage></IconPackage>-->
 
 
 
@@ -242,10 +245,10 @@ onMounted(async () => {
 <!--      </div>-->
 <!--    </section>-->
 
-    <section>
+<!--    <section>-->
 
-      <HotelDestino></HotelDestino>
-    </section>
+<!--      <HotelDestino></HotelDestino>-->
+<!--    </section>-->
 
 
   </div>

@@ -74,9 +74,9 @@ onMounted(async () => {
       <div v-show="!loading" ref="video" loading="lazy" class="vimeo-wrapper"></div>
       <div class="relative z-10 flex items-center  w-full h-full text-center">
         <div class=" container ">
-          <h1 class="text-white/80 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight text-5xl 2xl:text-7xl tracking-wide font-semibold font-playfair-display">
-            Design Your Peru Discovery.</h1>
-          <p class="text-white text-xl 2xl:text-lg tracking-widest font-light mt-5 ">Uncover the secrets of Machu Picchu and the wonders of Peru on a journey tailored just for you.</p>
+          <h1 class="text-white/80 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight text-5xl 2xl:text-6xl tracking-wide font-semibold font-playfair-display">
+            Start your unforgettable journey with us.</h1>
+          <p class="text-white text-xl 2xl:text-lg tracking-widest font-light mt-5 ">The best travel for your journey begins now</p>
         </div>
       </div>
       </div>

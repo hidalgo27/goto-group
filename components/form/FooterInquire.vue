@@ -7,9 +7,9 @@
         <section class="pb-8 text-center">
 <!--          <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="mx-auto w-64">-->
           <div class="border-title mb-6 mx-auto"></div>
-          <nuxt-img src="/images/logos/logo-mapi.svg" class="w-[250px] md:w-[320px] mx-auto"></nuxt-img>
+          <nuxt-img src="/images/logos/logo-gotogroup.svg" class="w-[250px] md:w-[320px] mx-auto"></nuxt-img>
 
-          <h3 class="my-3 font-semibold text-secondary text-2xl mt-12">Free Quote</h3>
+          <h3 class="my-3 font-semibold  text-2xl mt-12">Free Quote</h3>
           <p class="text-gray-500">We're flexible! Postpone your tour with zero cost up to 10 days prior to departure.</p>
 
         </section>
@@ -17,8 +17,8 @@
         <div class="text-left ">
 
 
-          <h3 class="text-lg text-primary font-semibold mt-5 text-center">HOTEL CATEGORY</h3>
-          <h3 class="text-xs text-primary text-center">(OPTIONAL. You may choose more than one)</h3>
+          <h3 class="text-lg  font-semibold mt-5 text-center">HOTEL CATEGORY</h3>
+          <h3 class="text-xs  text-center">(OPTIONAL. You may choose more than one)</h3>
           <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll no-scrollbar focus:touch-pan-x">
 
             <div class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-sm ">
@@ -76,8 +76,8 @@
             </div>
           </div>
 
-          <h3 class="text-xs text-primary hidden  mt-3">You can choose one or more destinations</h3>
-          <h3 class="text-lg text-primary font-semibold text-center pt-2">NUMBER OF TRAVELERS</h3>
+          <h3 class="text-xs hidden  mt-3">You can choose one or more destinations</h3>
+          <h3 class="text-lg font-semibold text-center pt-2">NUMBER OF TRAVELERS</h3>
           <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll no-scrollbar focus:touch-pan-x">
 
             <div class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-sm ">
@@ -101,7 +101,7 @@
           </div>
 
 
-          <h3 class="text-lg text-primary font-semibold text-center pt-2">TRIP LENGTH</h3>
+          <h3 class="text-lg  font-semibold text-center pt-2">TRIP LENGTH</h3>
           <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll no-scrollbar focus:touch-pan-x">
 
             <div class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-sm ">
@@ -179,6 +179,7 @@
             <div class="grid grid-cols-1 pt-2 gap-5">
               <div class="relative">
 <!--                  <div class="bg-white absolute rounded-md inset-0 -z-10"></div>-->
+                <div class="relative">
                   <input
                       type="text"
                       name="search"
@@ -194,6 +195,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                     </svg>
                   </div>
+                </div>
 
                   <div v-if="$v.fullName.$error" class="text-xs text-red-500">Name required</div>
 
@@ -223,75 +225,35 @@
 
                 </div>
 
-
                 <div class="relative z-50">
+                  <div class="relative">
+                    <client-only>
+                      <VDatePicker v-model="travelDate" mode="date" :min-date="today">
+                        <template #default="{ togglePopover }">
+                          <button
+                              class="input-goto peer text-left"
+                              @click="togglePopover"
+                          >
+                            <span v-if="travelDate">{{ moment(travelDate).format('YYYY-MM-DD') }}</span>
+                            <span class="text-gray-500" v-else>Tentative travel date</span>
+                            <span class="absolute cursor-text text-gray-500 -top-3 left-2 backdrop-blur-sm rounded-2xl px-1 transition-all duration-200 ease-in-out text-xs" >Inquire Date</span>
 
-<!--                  <VMenu>-->
-<!--                    <input type="text" class="is-input-ico peer" placeholder=" " v-model="formStore.travelDate" @focus="showModalProcess = true">-->
-<!--                    <label class="is-input-ico-label" @click="showModalProcess = true">When</label>-->
-<!--                    <div class="absolute inset-y-0 left-0 flex items-center pl-2 md:pl-4 pointer-events-none">-->
-<!--                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
-<!--                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />-->
-<!--                      </svg>-->
-<!--                    </div>-->
-<!--                    <template #popper>-->
-<!--                      <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="formStore.travelDate" @click="onClickSomething()" class="calendar-w"/>-->
-<!--                    </template>-->
-<!--                  </VMenu>-->
+                          </button>
 
-<!--                  <vue-tailwind-datepicker as-single  :formatter="formatter" placeholder="Tentative travel date" :disable-date="disablePastDates" v-model="travelDate" input-classes="input-goto peer !pl-3"/>-->
-<!--                  <label class="absolute cursor-text text-gray-500 top-0 left-2 backdrop-blur-sm rounded-2xl px-1 transition-all duration-200 ease-in-out text-xs" @click="showModalProcess = true">Tentative travel date </label>-->
-<!--                  <div v-if="$v.travelDate.$error" class="text-xs text-red-500">Phone Number required</div>-->
+                        </template>
+                      </VDatePicker>
+                    </client-only>
 
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                      </svg>
 
-<!--                  <client-only>-->
-<!--                    <h2>Calendar</h2>-->
-<!--                    <VCalendar v-model="travelDate" />-->
-<!--                    <h2>Date Picker</h2>-->
-<!--                    <VDatePicker v-model="travelDate" :attributes="attrs" />-->
-<!--                  </client-only>-->
-
-                  <client-only>
-                    <VDatePicker v-model="travelDate" mode="date" :min-date="today">
-                      <template #default="{ togglePopover }">
-                        <button
-                            class="input-goto peer text-left"
-                            @click="togglePopover"
-                        >
-
-                          <!--                        <span v-if="filters.created_start && filters.created_end">{{ filters.created_start+' to '+filters.created_end }}</span>-->
-                          <span v-if="travelDate">{{ moment(travelDate).format('YYYY-MM-DD') }}</span>
-                          <span class="text-gray-500" v-else>Tentative travel date</span>
-                          <span class="absolute cursor-text text-gray-500 -top-3 left-2 backdrop-blur-sm rounded-2xl px-1 transition-all duration-200 ease-in-out text-xs" >Inquire Date</span>
-
-                        </button>
-
-                      </template>
-                    </VDatePicker>
-                  </client-only>
-
-                  <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-                    </svg>
-
+                    </div>
                   </div>
-
                   <div v-if="$v.travelDate.$error" class="text-xs text-red-500">Travel date required</div>
-
                 </div>
 
-<!--                <div class="relative">-->
-<!--                  <label class="input-goto-label" for="date">Selecciona una fecha:</label>-->
-<!--                  <input-->
-<!--                      type="date"-->
-<!--                      id="date"-->
-<!--                      :min="today"-->
-<!--                      v-model="formStore.travelDate"-->
-<!--                      class="input-goto peer"-->
-<!--                  />-->
-<!--&lt;!&ndash;                  <p>Fecha seleccionada: {{ selectedDate }}</p>&ndash;&gt;-->
-<!--                </div>-->
               </div>
 
               <div class="relative">
@@ -312,9 +274,9 @@
                     </svg>
                   </div>
 
-                  <div v-if="$v.userEmail.$error" class="text-xs text-red-500">
-                    <span v-if="$v.userEmail.email.$message">{{ $v.userEmail.email.$message }}</span>
-                  </div>
+                </div>
+                <div v-if="$v.userEmail.$error" class="text-xs text-red-500">
+                  <span v-if="$v.userEmail.email.$message">{{ $v.userEmail.email.$message }}</span>
                 </div>
               </div>
 
