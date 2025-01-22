@@ -444,6 +444,9 @@ const listDestination = ref([])
 
 const geoIp = ref()
 
+const phoneCountry = ref('')
+const phoneCountryCode = ref('')
+
 let iti = null
 const phoneInputRef = ref(null);
 const companyInputRef = ref(null);
@@ -542,8 +545,8 @@ const handleSubmit = async () => {
       el_telefono: phone.value,
       el_textarea: comment.value,
 
-      country: geoIp.value.country + " " + geoIp.value.country_calling_code,
-      codigo_pais: geoIp.value.country + " " + geoIp.value.country_calling_code,
+      country: phoneCountry.value,      // Peru
+      codigo_pais: phoneCountryCode.value,  // +51 
 
       company: company.value,
       company_country: company_country.value,
@@ -569,7 +572,7 @@ const handleSubmit = async () => {
     });
 
     console.log("Objeto a enviar", obj)
-    /* await formStore.getInquire(obj).then((res) => {
+    await formStore.getInquire(obj).then((res) => {
       try {
         if (res){
           saveInquire(obj)
@@ -585,6 +588,10 @@ const handleSubmit = async () => {
           trip_length.value = []
           userEmail.value = ""
           comment.value = ""
+
+          company.value = ""
+          company_country.value = "" 
+
           formStore.showModalInquireGlobal = false
           // localStorage.clear()
           formStore.$reset()
@@ -617,6 +624,10 @@ const handleSubmit = async () => {
       trip_length.value = []
       userEmail.value = ""
       comment.value = ""
+      company.value = ""
+      company_country.value = "" 
+          
+
       formStore.showModalInquireGlobal = false
       formStore.$reset()
 
@@ -628,7 +639,7 @@ const handleSubmit = async () => {
         type: "error",
         text: "Error :(",
       }, 4000) // 4s
-    }) */
+    })
   }
 };
 
@@ -672,72 +683,21 @@ onMounted(async () => {
 
   await getPais()
 
-  // if (process.client) {
-  //   // @ts-ignore
-  //   import('intl-tel-input/build/js/intlTelInput.min.js').then((module) => {
-  //     const intlTelInput = module.default;
-  //
-  //     if (phoneInputRef.value) {
-  //
-  //       // if (res.token) {
-  //       //   policyStore['tokenLogin'] = res.token
-  //       //   loadingUser.value = false
-  //       // }
-  //
-  //       intlTelInput(phoneInputRef.value, {
-  //         initialCountry: "auto",
-  //         // @ts-ignore
-  //         geoIpLookup: function (callback) {
-  //           fetch("https://ipapi.co/json?key=NgKiSgq0Re9Agc6U6mnuP9601tOdj5a5iMh6tjKcRUwzJQEE4H")
-  //             .then(function (res) {
-  //               console.log("PHONE", res)
-  //               return res.json();
-  //             })
-  //             .then(function (data) { callback(data.country_code); })
-  //             .catch(function () { callback("us"); });
-  //         },
-  //       });
-  //     }
-  //
-  //     if (companyInputRef.value) {
-  //       iti = intlTelInput(companyInputRef.value, {
-  //         initialCountry: "auto",
-  //         // @ts-ignore
-  //         geoIpLookup: function (callback) {
-  //           fetch("https://ipapi.co/json?key=NgKiSgq0Re9Agc6U6mnuP9601tOdj5a5iMh6tjKcRUwzJQEE4H")
-  //             .then(function (res) {
-  //               console.log("Country", res)
-  //               return res.json();
-  //             })
-  //             .then(function (data) { callback(data.country_code); })
-  //             .catch(function () { callback("us"); });
-  //         },
-  //       });
-  //
-  //       companyInputRef.value.addEventListener('countrychange', function () {
-  //         const countryData = iti.getSelectedCountryData();
-  //         company_country.value = countryData.name
-  //         console.log("Country", countryData)
-  //       });
-  //     }
-  //   });
-  // }
-
   if (process.client) {
     // @ts-ignore
     import('intl-tel-input/build/js/intlTelInput.min.js').then((module) => {
       const intlTelInput = module.default;
 
-      const setupIntlTelInput = (inputElement:any, isCompany = false) => {
+      const setupIntlTelInput = (inputElement: any, isCompany = false) => {
         if (inputElement) {
           const iti = intlTelInput(inputElement, {
             initialCountry: "auto",
             // @ts-ignore
             geoIpLookup: function (callback) {
               fetch("https://ipapi.co/json?key=NgKiSgq0Re9Agc6U6mnuP9601tOdj5a5iMh6tjKcRUwzJQEE4H")
-                  .then(res => res.json())
-                  .then(data => callback(data.country_code))
-                  .catch(() => callback("us"));
+                .then(res => res.json())
+                .then(data => callback(data.country_code))
+                .catch(() => callback("us"));
             },
           });
 
@@ -745,9 +705,18 @@ onMounted(async () => {
             inputElement.addEventListener('countrychange', () => {
               const countryData = iti.getSelectedCountryData();
               company_country.value = countryData.name;
-              console.log("Country", countryData);
+              //console.log("Country", countryData);
+            });
+          } else {
+            inputElement.addEventListener('countrychange', () => {
+              const countryData = iti.getSelectedCountryData();
+              phoneCountry.value = countryData.name;
+              phoneCountryCode.value = countryData.iso2.toUpperCase() + " +" + countryData.dialCode;
+              //console.log("Telefono", phoneCountryCode.value + " / " + phoneCountry.value);
             });
           }
+
+
         }
       };
 
@@ -759,7 +728,6 @@ onMounted(async () => {
       }
     });
   }
-
 })
 
 </script>
