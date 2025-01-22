@@ -668,57 +668,6 @@ onMounted(async () => {
 
   await getPais()
 
-  // if (process.client) {
-  //   // @ts-ignore
-  //   import('intl-tel-input/build/js/intlTelInput.min.js').then((module) => {
-  //     const intlTelInput = module.default;
-  //
-  //     if (phoneInputRef.value) {
-  //
-  //       // if (res.token) {
-  //       //   policyStore['tokenLogin'] = res.token
-  //       //   loadingUser.value = false
-  //       // }
-  //
-  //       intlTelInput(phoneInputRef.value, {
-  //         initialCountry: "auto",
-  //         // @ts-ignore
-  //         geoIpLookup: function (callback) {
-  //           fetch("https://ipapi.co/json?key=NgKiSgq0Re9Agc6U6mnuP9601tOdj5a5iMh6tjKcRUwzJQEE4H")
-  //             .then(function (res) {
-  //               console.log("PHONE", res)
-  //               return res.json();
-  //             })
-  //             .then(function (data) { callback(data.country_code); })
-  //             .catch(function () { callback("us"); });
-  //         },
-  //       });
-  //     }
-  //
-  //     if (companyInputRef.value) {
-  //       iti = intlTelInput(companyInputRef.value, {
-  //         initialCountry: "auto",
-  //         // @ts-ignore
-  //         geoIpLookup: function (callback) {
-  //           fetch("https://ipapi.co/json?key=NgKiSgq0Re9Agc6U6mnuP9601tOdj5a5iMh6tjKcRUwzJQEE4H")
-  //             .then(function (res) {
-  //               console.log("Country", res)
-  //               return res.json();
-  //             })
-  //             .then(function (data) { callback(data.country_code); })
-  //             .catch(function () { callback("us"); });
-  //         },
-  //       });
-  //
-  //       companyInputRef.value.addEventListener('countrychange', function () {
-  //         const countryData = iti.getSelectedCountryData();
-  //         company_country.value = countryData.name
-  //         console.log("Country", countryData)
-  //       });
-  //     }
-  //   });
-  // }
-
   if (process.client) {
     // @ts-ignore
     import('intl-tel-input/build/js/intlTelInput.min.js').then((module) => {
@@ -755,7 +704,6 @@ onMounted(async () => {
       }
     });
   }
-
 })
 
 </script>
