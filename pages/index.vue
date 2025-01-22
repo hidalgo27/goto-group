@@ -114,9 +114,9 @@ onMounted(async () => {
     <nuxt-link to="/peru-travel-packages" class="btn-primary-outline">View more</nuxt-link>
   </section>
 
-  <div class="my-28 bg-primary/5 py-24">
+  <section class="my-28 bg-primary/5 py-24">
     <TimeLine></TimeLine>
-  </div>
+  </section>
 
   <section class="container">
     <div class="mt-6 text-white mb-6">

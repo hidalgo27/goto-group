@@ -106,6 +106,7 @@ const handleSubmit = async () => {
       inquire_date: moment().tz('America/Lima').format('YYYY-MM-DD HH:mm:ss')
     }
 
+
     dataLayer.push({
       user_properties: {
         "user_id": {"value":  crypto.randomUUID()},
