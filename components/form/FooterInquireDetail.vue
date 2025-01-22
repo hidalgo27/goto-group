@@ -33,8 +33,8 @@ const listDestination = ref([]);
 
 const geoIp = ref();
 
-const phoneCountry = ref('')
-const phoneCountryCode = ref('')
+const phoneCountry = ref("");
+const phoneCountryCode = ref("");
 
 let iti = null;
 const phoneInputRef = ref(null);
@@ -115,12 +115,12 @@ const handleSubmit = async () => {
       el_telefono: phone.value,
       el_textarea: comment.value,
 
-      country: phoneCountry.value,      // Peru
-      codigo_pais: phoneCountryCode.value,  // +51
+      country: phoneCountry.value, // Peru
+      codigo_pais: phoneCountryCode.value, // +51
 
       company: company.value,
       company_country: company_country.value,
-      
+
       producto: "goto.group",
       device: $device.isMobile
         ? "Mobile"
@@ -147,67 +147,84 @@ const handleSubmit = async () => {
 
     console.log("obj", obj);
 
-    /* await formStore.getInquire(obj).then((res) => {
-      if (res){
-        saveInquire(obj)
-        showLoader.value = false
+    await formStore
+      .getInquire(obj)
+      .then((res) => {
+        if (res) {
+          saveInquire(obj);
+          showLoader.value = false;
 
-        travelDate.value = []
-        traveller.value = ""
-        hotel.value = []
-        formStore.destination = []
+          travelDate.value = [];
+          traveller.value = "";
+          hotel.value = [];
+          formStore.destination = [];
 
-        fullName.value = ""
-        phone.value = ""
-        userEmail.value = ""
-        comment.value = ""
-        formStore.showModalItinerary = false
-        formStore.$reset()
+          fullName.value = "";
+          phone.value = "";
+          userEmail.value = "";
+          comment.value = "";
 
-        $v.value.$reset()
+          company.value = ""
+          company_country.value = "" 
+          formStore.showModalItinerary = false;
+          formStore.$reset();
 
-        notify({
-          group: "foo",
-          title: 'Well done',
-          type: "success",
-          text: "Your trip has been successfully created 🙂",
-        }, 4000) // 4s
+          $v.value.$reset();
 
-      }else{
-        showLoader.value = false
-        formStore.showModalItinerary = false
-        notify({
-          group: "foo",
-          title: 'Error',
-          type: "error",
-          text: "Error :(",
-        }, 4000) // 4s
-      }
-    }).catch((err) => {
-      showLoader.value = false
-      formStore.showModalItinerary = false
+          notify(
+            {
+              group: "foo",
+              title: "Well done",
+              type: "success",
+              text: "Your trip has been successfully created 🙂",
+            },
+            4000
+          ); // 4s
+        } else {
+          showLoader.value = false;
+          formStore.showModalItinerary = false;
+          notify(
+            {
+              group: "foo",
+              title: "Error",
+              type: "error",
+              text: "Error :(",
+            },
+            4000
+          ); // 4s
+        }
+      })
+      .catch((err) => {
+        showLoader.value = false;
+        formStore.showModalItinerary = false;
 
-      travelDate.value = []
-      traveller.value = ""
-      hotel.value = []
-      formStore.destination = []
+        travelDate.value = [];
+        traveller.value = "";
+        hotel.value = [];
+        formStore.destination = [];
 
-      fullName.value = ""
-      phone.value = ""
-      userEmail.value = ""
-      comment.value = ""
+        fullName.value = "";
+        phone.value = "";
+        userEmail.value = "";
+        comment.value = "";
 
-      formStore.$reset()
+        company.value = ""
+        company_country.value = "" 
 
-      $v.value.$reset()
+        formStore.$reset();
 
-      notify({
-        group: "foo",
-        title: 'Error',
-        type: "error",
-        text: "Error :(",
-      }, 4000) // 4s
-    }) */
+        $v.value.$reset();
+
+        notify(
+          {
+            group: "foo",
+            title: "Error",
+            type: "error",
+            text: "Error :(",
+          },
+          4000
+        ); // 4s
+      });
   }
 };
 
@@ -261,33 +278,36 @@ onMounted(async () => {
 
   if (process.client) {
     // @ts-ignore
-    import('intl-tel-input/build/js/intlTelInput.min.js').then((module) => {
+    import("intl-tel-input/build/js/intlTelInput.min.js").then((module) => {
       const intlTelInput = module.default;
 
-      const setupIntlTelInput = (inputElement:any, isCompany = false) => {
+      const setupIntlTelInput = (inputElement: any, isCompany = false) => {
         if (inputElement) {
           const iti = intlTelInput(inputElement, {
             initialCountry: "auto",
             // @ts-ignore
             geoIpLookup: function (callback) {
-              fetch("https://ipapi.co/json?key=NgKiSgq0Re9Agc6U6mnuP9601tOdj5a5iMh6tjKcRUwzJQEE4H")
-                  .then(res => res.json())
-                  .then(data => callback(data.country_code))
-                  .catch(() => callback("us"));
+              fetch(
+                "https://ipapi.co/json?key=NgKiSgq0Re9Agc6U6mnuP9601tOdj5a5iMh6tjKcRUwzJQEE4H"
+              )
+                .then((res) => res.json())
+                .then((data) => callback(data.country_code))
+                .catch(() => callback("us"));
             },
           });
 
           if (isCompany) {
-            inputElement.addEventListener('countrychange', () => {
+            inputElement.addEventListener("countrychange", () => {
               const countryData = iti.getSelectedCountryData();
               company_country.value = countryData.name;
               //console.log("Country", countryData);
             });
           } else {
-            inputElement.addEventListener('countrychange', () => {
+            inputElement.addEventListener("countrychange", () => {
               const countryData = iti.getSelectedCountryData();
               phoneCountry.value = countryData.name;
-              phoneCountryCode.value = countryData.iso2.toUpperCase() + " +" + countryData.dialCode;
+              phoneCountryCode.value =
+                countryData.iso2.toUpperCase() + " +" + countryData.dialCode;
               // console.log("Telefono", phoneCountryCode.value + " / " + phoneCountry.value);
             });
           }

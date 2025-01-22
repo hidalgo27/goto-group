@@ -568,7 +568,7 @@ const handleSubmit = async () => {
     });
 
     console.log("Objeto a enviar", obj)
-    /* await formStore.getInquire(obj).then((res) => {
+    await formStore.getInquire(obj).then((res) => {
       try {
         if (res){
           saveInquire(obj)
@@ -584,6 +584,10 @@ const handleSubmit = async () => {
           trip_length.value = []
           userEmail.value = ""
           comment.value = ""
+
+          company.value = ""
+          company_country.value = "" 
+
           formStore.showModalInquireGlobal = false
           // localStorage.clear()
           formStore.$reset()
@@ -616,6 +620,10 @@ const handleSubmit = async () => {
       trip_length.value = []
       userEmail.value = ""
       comment.value = ""
+      company.value = ""
+      company_country.value = "" 
+          
+
       formStore.showModalInquireGlobal = false
       formStore.$reset()
 
@@ -627,7 +635,7 @@ const handleSubmit = async () => {
         type: "error",
         text: "Error :(",
       }, 4000) // 4s
-    }) */
+    })
   }
 };
 
