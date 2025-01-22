@@ -289,10 +289,11 @@
                 </div>
               </div>
 
+              {{company_country}}
               <div class="grid grid-cols-2 gap-3 z-40">
                 <div class="relative">
                   <input type="text" class="input-goto peer" placeholder=" " autocomplete="off"
-                    v-model="company_country" ref="companyInputRef" id="country_name" @input="preventManualInput" />
+                    v-model="company_country" ref="companyInputRef" id="country_name" />
                   <label class="input-goto-label -top-3 text-gray-500">Company Country</label>
                   <div v-if="$v.company_country.$error" class="text-xs text-red-500">
                     Company Country required
@@ -301,6 +302,7 @@
 
                 <div class="relative">
 
+                  {{country_code}}
                   <input type="text" class="input-goto peer" placeholder=" " autocomplete="off" v-model="phone"
                     ref="phoneInputRef" id="phoneNumber" />
                   <!--                    <input ref="phoneInputRef" v-model="phone" class="is-input-ico peer" placeholder=" " id="phoneNumber" type="tel" />-->
@@ -450,6 +452,8 @@ const showModalProcess = ref(false)
 
 const company = ref('')
 const company_country = ref('')
+
+const country_code = ref('')
 
 const formatter = ref({
   date: 'DD MMM YYYY',
