@@ -292,7 +292,7 @@
               <div class="grid grid-cols-2 gap-3 z-40">
                 <div class="relative">
                   <input type="text" class="input-goto peer" placeholder=" " autocomplete="off"
-                    v-model="company_country" ref="companyInputRef" id="country_name" />
+                    v-model="company_country" ref="companyInputRef" id="country_name" @input="preventManualInput" />
                   <label class="input-goto-label -top-3 text-gray-500">Company Country</label>
                   <div v-if="$v.company_country.$error" class="text-xs text-red-500">
                     Company Country required
@@ -442,6 +442,7 @@ const listDestination = ref([])
 
 const geoIp = ref()
 
+let iti = null
 const phoneInputRef = ref(null);
 const companyInputRef = ref(null);
 
@@ -647,6 +648,19 @@ const getIp = async () => {
   // }
 }
 
+const preventManualInput = (event: { target: { value: string } }) => {
+  try {
+    if (!iti) {
+      console.warn("intlTelInput instance is not initialized.");
+      return;
+    }
+    console.log("preventManualInput", event.target.value);
+    const selectedCountry = iti.getSelectedCountryData()?.name || "";
+    event.target.value = selectedCountry;
+  } catch (error) {
+    console.error("Error in preventManualInput:", error);
+  }
+};
 
 onMounted(async () => {
 
@@ -682,7 +696,7 @@ onMounted(async () => {
       }
 
       if (companyInputRef.value) {
-        const iti = intlTelInput(companyInputRef.value, {
+        iti = intlTelInput(companyInputRef.value, {
           initialCountry: "auto",
           // @ts-ignore
           geoIpLookup: function (callback) {
