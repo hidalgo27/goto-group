@@ -442,6 +442,9 @@ const listDestination = ref([])
 
 const geoIp = ref()
 
+const phoneCountry = ref('')
+const phoneCountryCode = ref('')
+
 let iti = null
 const phoneInputRef = ref(null);
 const companyInputRef = ref(null);
@@ -538,8 +541,8 @@ const handleSubmit = async () => {
       el_telefono: phone.value,
       el_textarea: comment.value,
 
-      country: geoIp.value.country + " " + geoIp.value.country_calling_code,
-      codigo_pais: geoIp.value.country + " " + geoIp.value.country_calling_code,
+      country: phoneCountry.value,      // Peru
+      codigo_pais: phoneCountryCode.value,  // +51 
 
       company: company.value,
       company_country: company_country.value,
@@ -690,9 +693,18 @@ onMounted(async () => {
             inputElement.addEventListener('countrychange', () => {
               const countryData = iti.getSelectedCountryData();
               company_country.value = countryData.name;
-              console.log("Country", countryData);
+              //console.log("Country", countryData);
+            });
+          } else {
+            inputElement.addEventListener('countrychange', () => {
+              const countryData = iti.getSelectedCountryData();
+              phoneCountry.value = countryData.name;
+              phoneCountryCode.value = "+" + countryData.dialCode;
+              //console.log("Telefono", phoneCountryCode.value + " / " + phoneCountry.value);
             });
           }
+
+          
         }
       };
 
