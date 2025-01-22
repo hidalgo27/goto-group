@@ -289,7 +289,6 @@
                 </div>
               </div>
 
-              {{company_country}}
               <div class="grid grid-cols-2 gap-3 z-40">
                 <div class="relative">
                   <input type="text" class="input-goto peer" placeholder=" " autocomplete="off"
