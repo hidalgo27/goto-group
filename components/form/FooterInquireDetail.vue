@@ -118,6 +118,9 @@ const handleSubmit = async () => {
       country: phoneCountry.value,      // Peru
       codigo_pais: phoneCountryCode.value,  // +51
 
+      company: company.value,
+      company_country: company_country.value,
+      
       producto: "goto.group",
       device: $device.isMobile
         ? "Mobile"
@@ -284,7 +287,7 @@ onMounted(async () => {
             inputElement.addEventListener('countrychange', () => {
               const countryData = iti.getSelectedCountryData();
               phoneCountry.value = countryData.name;
-              phoneCountryCode.value = "+" + countryData.dialCode;
+              phoneCountryCode.value = countryData.iso2.toUpperCase() + " +" + countryData.dialCode;
               // console.log("Telefono", phoneCountryCode.value + " / " + phoneCountry.value);
             });
           }
@@ -700,7 +703,7 @@ onMounted(async () => {
                 </div>
               </div>
 
-              <div class="grid grid-cols-2 gap-3">
+              <div class="grid grid-cols-2 gap-3 z-40">
                 <div class="relative">
                   <input
                     type="text"

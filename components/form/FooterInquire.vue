@@ -676,16 +676,16 @@ onMounted(async () => {
     import('intl-tel-input/build/js/intlTelInput.min.js').then((module) => {
       const intlTelInput = module.default;
 
-      const setupIntlTelInput = (inputElement:any, isCompany = false) => {
+      const setupIntlTelInput = (inputElement: any, isCompany = false) => {
         if (inputElement) {
           const iti = intlTelInput(inputElement, {
             initialCountry: "auto",
             // @ts-ignore
             geoIpLookup: function (callback) {
               fetch("https://ipapi.co/json?key=NgKiSgq0Re9Agc6U6mnuP9601tOdj5a5iMh6tjKcRUwzJQEE4H")
-                  .then(res => res.json())
-                  .then(data => callback(data.country_code))
-                  .catch(() => callback("us"));
+                .then(res => res.json())
+                .then(data => callback(data.country_code))
+                .catch(() => callback("us"));
             },
           });
 
@@ -699,12 +699,12 @@ onMounted(async () => {
             inputElement.addEventListener('countrychange', () => {
               const countryData = iti.getSelectedCountryData();
               phoneCountry.value = countryData.name;
-              phoneCountryCode.value = "+" + countryData.dialCode;
+              phoneCountryCode.value = countryData.iso2.toUpperCase() + " +" + countryData.dialCode;
               //console.log("Telefono", phoneCountryCode.value + " / " + phoneCountry.value);
             });
           }
 
-          
+
         }
       };
 
